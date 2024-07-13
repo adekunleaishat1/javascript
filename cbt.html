@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 700px;
+            height: 400px;
+            background-color: beige;
+            margin: auto;
+            border-radius: 10px;
+        }
+        .questcont{
+            padding: 20px 10px;
+        }
+        .quest{
+            text-align: center;
+            
+        }
+        .opt{
+            margin: auto;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="time">20</h1>
+    <div id="showquestion" class="container">
+        
+    </div>
+</body>
+</html>
+<script>
+    let showquestion = document.getElementById("showquestion")
+    let time = document.getElementById("time")
+    
+    
+    let Questions = [
+       {question:"Who is the president of Nigeria", Option:["buhari", "Tinubu", "Obi peter", "Ariku"], correctanswer:"Tinubu", answer:""},
+       {question: "What is the capital of France?", Option: ["Paris", "London", "Berlin", "Madrid"], correctanswer:"Paris"},
+       {question: "Which planet is known as the Red Planet?", Option:["Earth", "Mars", "Jupiter", "Saturn"], correctanswer:"Mars"},
+       {question: "Who wrote 'To Kill a Mockingbird'?", Option: ["Harper Lee", "Mark Twain", "Ernest Hemingway", "F. Scott Fitzgerald"], correctanswer:"Harper Lee"},
+       {question: "What is the smallest prime number?", Option:["1", "2", "3", "5"], correctanswer: "2"},
+       {question:"Which element has the chemical symbol 'O'?", Option:["Oxygen", "Gold", "Silver", "Iron"], correctanswer:"Oxygen"},
+       {question:"What is the largest ocean on Earth?", Option:["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"], correctanswer:"Pacific Ocean"},
+       {question: "Which country is known as the Land of the Rising Sun?", Option:["China", "Japan", "South Korea", "Thailand"], correctanswer:"Japan"},
+       {question:"What is the hardest natural substance on Earth?", Option: ["Gold", "Iron", "Diamond", "Platinum"],correctanswer:"Diamond"},
+    ]
+
+    
+
+   let currentIndex = 0
+    
+
+    function displayquestion() {
+        const quest = Questions[currentIndex]
+         console.log(quest);
+         let optionhtml = ""
+         quest.Option.forEach(element => {
+          optionhtml += `<div><input value=${element} onchange="chooseans(event)" name="answer" type="radio" />
+                     <label for="answer" >${element}</label> </div> 
+                     `
+         });
+         showquestion.innerHTML = `<div>
+                     <h1 class="quest">${quest.question}</h1>
+                               <div class="opt">${optionhtml}</div>
+                                <button onclick="questprev()" >prev</button>
+                         <button onclick="questnext()" >next</button>
+                 </div>`
+        
+    }
+    displayquestion()
+
+    function sayHello() {
+       console.log('Hello')
+    }
+// setInterval(sayHello, 5000)
+setTimeout(sayHello, 5000)
+     
+
+let count = ['Finland', 'Ireland', 'nigeria', "ghana", 'liberia']
+  
+  let filtered =  count.filter(el=> 
+        el.includes("land")
+    )
+
+    console.log(filtered);
+
+
+    // for (let i = 0; i < 1; i++) {
+    //     const element = Questions[i];
+    //     for(let j = 0 ; j < element.Option.length; j++){
+    //         let opt = element.Option[j]
+
+    //         optionhtml += ` <input name="answer" type="radio" />
+    //                 <label for="answer" >${opt}</label>`
+                   
+    //     }
+      
+
+    //     showquestion.innerHTML += `<div>
+    //           <h1 class="quest">${element.question}</h1>
+    //               <div> ${optionhtml}</div>
+    //               <button onclick="questnext(${i})"> Next</button>
+    //            </div>`
+
+    // }
+
+    function questnext() {
+      
+       if (currentIndex < Questions.length-1) {
+         currentIndex++
+         console.log(currentIndex);
+         displayquestion()
+         seTimer();
+
+
+
+
+         
+       }else{
+        showquestion.innerHTML = `<h1 class="quest">You have answered all your questions please submit </h1>`
+       }
+    }
+     function questprev() {
+        if (currentIndex === 0) {
+            currentIndex = 0
+            console.log(currentIndex);
+            displayquestion()
+        }else{
+            currentIndex--
+            displayquestion()
+            console.log(currentIndex);
+        }
+    }
+
+    function chooseans(el) {
+        console.log(el.target.value);
+        let answer = el.target.value
+       Questions[currentIndex].answer = answer
+       console.log( Questions[currentIndex] );
+      
+    }
+
+   function seTimer() {
+     let timer =  setInterval(() => {
+     let currenttime =  parseInt(time.innerHTML)
+        if (currenttime == 0) {  
+          clearInterval(timer)
+          questnext()
+          currenttime = 50
+          time.innerHTML = currenttime;
+       }else{
+         currenttime -= 1
+         time.innerHTML = currenttime;
+       }
+                  
+     }, 1000);
+    
+   }
+   seTimer()
+
+   
+
+</script>

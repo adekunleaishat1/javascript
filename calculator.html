@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .body{
+            width: 500px;
+            height: 500px;
+            background-color: white;
+            box-shadow: 2px 2px 5px rgb(190, 187, 187);
+            margin: auto;
+            padding: 10px 20px;
+        }
+        .cont{
+            width: 100%;
+            height: 300px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            
+        }
+        .cont button{
+            padding: 10px 40px;
+            border-radius: 10px;
+            background-color: rgb(17, 17, 243);
+            border: 1px solid  rgb(17, 17, 243);
+            color: white;
+        }
+        #display{
+            padding: 10px 20px;
+            /* width: 100%; */
+            height: 50px;
+            box-shadow: 2px 2px 5px rgb(236, 233, 233), -2px -2px 5px rgb(236, 234, 234);
+        }
+    </style>
+</head>
+<body>
+    <div class="body">
+        <div id="display">
+        </div>
+        <div class="cont">
+            <button onclick="num(1)">1</button>
+            <button onclick="num(2)">2</button>
+            <button onclick="num(3)">3</button>
+            <button onclick="num(4)">4</button>
+            <button onclick="num(5)">5</button>
+            <button onclick="num(6)">6</button>
+            <button onclick="num(7)">7</button>
+            <button onclick="num(8)">8</button>
+            <button onclick="num(9)">9</button>
+            <button onclick="num('.')">.</button>
+            <button onclick="num(0)">0</button>
+            <button onclick="num('*')">*</button>
+            <button onclick="num('+')">+</button>
+            <button onclick="num('-')">-</button>
+            <button onclick="num('/')">/</button>
+            <button onclick="delnum()">Delete</button>
+            <button onclick="clearnum()">Clear</button>
+            <button onclick="arithmetic()">=</button>
+        </div>
+    </div>
+   
+</body>
+</html>
+<script>
+    let display = document.getElementById("display")
+    let splitednum
+    let totalsum  = 0
+    function num(number) {
+        display.innerHTML += number
+    }
+    function arithmetic() {
+        // console.log(display.innerHTML);
+        if (display.innerHTML.includes('+')) {
+             splitednum = display.innerHTML.trim().split("+")
+            console.log(splitednum);
+            for(let i = 0 ; i <= splitednum.length-1; i++){
+                totalsum += Number(splitednum[i]) 
+                 display.innerHTML = totalsum
+            } 
+        }else if (display.innerHTML.includes('-')) {
+            splitednum = display.innerHTML.trim().split("-")
+            console.log(splitednum);
+            totalsum = splitednum[0]
+            console.log(totalsum);
+            for(let i = 1 ; i <= splitednum.length-1; i++){
+             console.log(Number(splitednum[i]) );
+                totalsum -= Number(splitednum[i]) 
+                console.log(totalsum);
+                 display.innerHTML = totalsum
+            } 
+        }else if(display.innerHTML.includes('*')){
+            splitednum = display.innerHTML.trim().split("*")
+            totalsum = splitednum[0]
+            for(let i = 1 ; i <= splitednum.length-1; i++){
+             console.log(Number(splitednum[i]) );
+                totalsum *= Number(splitednum[i]) 
+                console.log(totalsum);
+                 display.innerHTML = totalsum
+            } 
+        }else if(display.innerHTML.includes('/')){
+            splitednum = display.innerHTML.trim().split("/")
+            totalsum = splitednum[0]
+            for(let i = 1 ; i <= splitednum.length-1; i++){
+             console.log(Number(splitednum[i]) );
+                totalsum /= Number(splitednum[i]) 
+                console.log(totalsum);
+                 display.innerHTML = totalsum
+            } 
+        }
+         else {
+            console.log("there is no valid operator");
+        }
+
+    }
+    function delnum(){
+        let val = display.innerHTML.trim()
+          display.innerHTML = val.slice(0, -1)
+    }
+    function clearnum() {
+        display.innerHTML = ""
+    }
+</script>

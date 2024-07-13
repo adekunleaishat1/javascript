@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .todocont{
+            width: 500px;
+            height: 120px;
+            background-color: azure;
+            margin: auto;
+            padding: 10px 30px;
+        }
+        .todocont button{
+            border: none;
+            background-color: black;
+            border-radius: 10px;
+            color: white;
+            padding: 15px 30px;
+            margin-top: 10px;
+        }
+        .todocont input{
+            width: 85%;
+            height: 40px;
+            border: none;
+            background-color: aliceblue;
+            padding-left: 10px;
+            outline: none;
+        }
+        .todocont2{
+            width: 500px;
+            height: 120px;
+            background-color: azure;
+            margin: auto;
+            padding: 10px 30px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="todocont">
+        <input id="todo" type="text" placeholder="Enter Todo">
+        <button  onclick="addtodo()">Addtodo</button>
+    </div>
+    <div id="todoshow" class="todocont2">
+
+    </div>
+  
+</body>
+</html>
+<script>
+    let todoshow = document.getElementById("todoshow")
+   let todo = document.getElementById("todo")
+   let todoarray = JSON.parse(localStorage.getItem("todo"))  || []
+
+   function addtodo() {
+    console.log(todo.value);
+    if (todo.value == "") {
+        alert("input field cannot be empty")
+        return;
+    }else{
+        console.log(todo.value);
+        todoarray.push(todo.value)
+        localStorage.setItem("todo", JSON.stringify(todoarray))
+        todo.value = ""
+        loop()
+    }
+
+   }
+   
+    function loop() {
+        todoshow.innerHTML = ""
+        for(let i = 0; i <= todoarray.length-1; i++){
+        let element = todoarray[i]
+        todoshow.innerHTML += `<div style="background-color:aliceblue; width:100%; padding: 10px 20px; display:flex; justify-content:space-between ; align-items:center;">
+            <p>${element}</p>
+             <button onclick="edittodo(${i})">Edit</button>
+             <button onclick="deletetodo(${i})">Delete</button> </div>`
+       } 
+
+    }
+    loop()
+   
+    
+
+    function deletetodo(i) {
+        console.log(i);
+         todoarray.splice(i, 1)
+         console.log(todoarray);
+         loop()
+    }
+
+
+    
+</script>

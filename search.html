@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input  id="inpy" type="text">
+    <button onclick="search()">Search</button>
+
+    <div id="display">
+
+    </div>
+    
+</body>
+</html>
+<script>
+    let inpuy = document.getElementById("inpy")
+    let display = document.getElementById("display")
+    let searcharray = [
+        {name:"bags",brand:"versarce"},
+        {name:"bags",brand:"lui vuiton"},
+        {name:"shoe",brand:"versarce"},
+        {name:"dress",brand:"gucci"},
+        {name:"dress",brand:"zara"},
+        {name:"demin",brand:"zara"},
+    ]
+    function search() {
+        console.log(inpuy.value);
+      let filteredproduct =  searcharray.filter((product)=> product.name.includes(inpuy.value))
+      console.log(filteredproduct);
+      if (filteredproduct.length == 0) {
+           display.innerHTML = "search product not found"
+      }else{
+        display.innerHTML = ""
+        filteredproduct.forEach(element => {
+            display.innerHTML += `<div>
+                <h1> ${element.name}</h1>
+                <h1> ${element.brand}</h1>
+                </div>`
+        });
+      }
+    }
+
+</script>

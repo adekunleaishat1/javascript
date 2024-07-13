@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+       <div id="display">
+
+       </div>
+</body>
+</html>
+<script>
+    let array = Array(8)
+    let children = ["tola", "bola", "tolu", "nifemi", "bolade"]
+    console.log(children, children.length);
+    console.log(array);
+    const arr = [
+    'Asabeneh',
+    250,
+    true,
+    { country: 'Finland', city: 'Helsinki' },
+    { skills: ['HTML', 'CSS', 'JS', 'React', 'Python'] }
+] // arr containing different data types
+  let lastindex = arr.length-1
+console.log(arr, )
+console.log(arr[3]);
+console.log(arr[lastindex]);
+const countries = [
+  'Albania',
+  'Bolivia',
+  'Canada',
+  'Denmark',
+  'Ethiopia',
+  'Finland',
+  'Germany',
+  'Hungary',
+  'Ireland',
+  'Japan',
+  'Kenya'
+]
+countries[5] = "Nigeria"
+console.log(countries.includes("Germany"));
+/// fill  it creates eight element values filled with 'X'
+const eightXvalues = Array(8).fill(4)
+console.log(eightXvalues);
+
+
+let houses = ["bungalow", "duplex", "skyscraper","storey building"]
+let  color = ["yellow", "red", "blue", "white", "green"]
+  let housescolor = houses.concat(color)
+  console.log(housescolor);
+
+  const numbers = [1, 2, 3, 4, 5, 3, 3, 1, 2, 3]
+ console.log( numbers.lastIndexOf(2));
+//   console.log(numbers.slice(0, 1));
+  console.log(numbers.splice(0,2));
+//  console.log(numbers.toString());
+
+numbers.push(9) // add a new item to the array
+console.log(numbers);
+  numbers.pop()  // remove the item from the end
+  console.log(numbers);
+
+
+  numbers.shift()   //shift will remove an item from the begining of the array
+  console.log(numbers);
+
+  numbers.unshift(5)  // unshift will add an item to the begining of the array
+  console.log(numbers);
+
+
+const Questions = [
+    {
+        questions:"Who is the president of oyo state",
+        options:[
+            "buhari",
+            "tinubu",
+            "peter obi",
+            "Atiku"
+        ],
+        correctanswer:"tinubu"
+    },
+    {
+        questions:"Who is the president of oyo state",
+        options:[
+            "buhari",
+            "tinubu",
+            "peter obi",
+            "Atiku"
+        ],
+        correctanswer:"tinubu"
+    }    
+]
+  let display = document.getElementById("display")
+for(let i = 0; i <= Questions.length-1 ; i++){
+    console.log(Questions[i]);
+      display.innerHTML += `<div>
+        <h1>${Questions[i].questions}</h1>
+           <p>${Questions[i].options}</p>
+        </div>`
+}
+
+
+</script>
